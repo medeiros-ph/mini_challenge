@@ -47,35 +47,6 @@ for item in range(quantity):
 X_train, X_test, y_train, y_test = train_test_split( X, y, test_size=0.33, random_state=42)
 
 
-train_datagen = ImageDataGenerator(
-rescale=1./255,
-shear_range=0.2,
-zoom_range=0.2,
-horizontal_flip=True)
-
-test_datagen = ImageDataGenerator(rescale=1./255)
-
-
-train_generator = train_datagen.flow_from_directory(directory=r"/home/medeiros/mini_challenge/data_folder",
-                                             target_size = (256, 256),
-                                             color_mode = 'rgb',
-                                             classes = ['graduation', 'meeting', 'picnic'],
-                                             batch_size = 32,
-                                             class_mode = 'categorical',
-                                             shuffle=True,
-                                             seed=42
- ) #Recebe um diretório e caminha por ele
-   #com base nos parâmetros fornecidos
-
-
-test_set = test_datagen.flow_from_directory('/home/medeiros/mini_challenge/data_folder',
-                                           target_size = (256, 256),
-                                           color_mode = 'rgb',
-                                           classes = ['graduation', 'meeting', 'picnic'],
-                                           batch_size = 32,
-                                           class_mode = 'categorical')
-
-
 
 
 model = Sequential()
@@ -109,4 +80,53 @@ model.add(Dense(activation = 'softmax',
                units = 3))#FC3
 
 
+train_datagen = ImageDataGenerator(
+rescale=1./255,
+shear_range=0.2,
+zoom_range=0.2,
+horizontal_flip=True)
 
+test_datagen = ImageDataGenerator(rescale=1./255)
+
+
+train_generator = train_datagen.flow_from_directory(directory=r"/home/medeiros/mini_challenge/data_folder",
+                                             target_size = (256, 256),
+                                             color_mode = 'rgb',
+                                             classes = ['graduation', 'meeting', 'picnic'],
+                                             batch_size = 32,
+                                             class_mode = 'categorical',
+                                             shuffle=True,
+                                             seed=42
+ ) #Recebe um diretório e caminha por ele
+   #com base nos parâmetros fornecidos
+
+
+test_set = test_datagen.flow_from_directory(directory=r"/home/medeiros/mini_challenge/data_folder",
+                                           target_size = (256, 256),
+                                           color_mode = 'rgb',
+                                           classes = ['graduation', 'meeting', 'picnic'],
+                                           batch_size = 32,
+                                           class_mode = 'categorical')
+
+
+validation_generator = test_datagen.flow_from_directory(
+        validate_images_path,
+        target_size=(256, 256),
+        batch_size=batch_size)
+early_stopping = keras.callbacks.EarlyStopping(monitor='val_acc', min_delta=0, patience=3, verbose=1, mode='auto')
+history = model.fit_generator(
+        train_generator,
+        steps_per_epoch=21000,
+        epochs=50,
+        verbose=1,
+        callbacks=[early_stopping],
+        validation_data=validation_generator,
+        validation_steps=7000
+)
+
+
+classifier.fit_generator(train_generator,
+                         steps_per_epoch= 21000,
+                         epochs = 50,
+                         validation_data = test_set,
+                         validation_steps = 7000)
