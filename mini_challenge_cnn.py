@@ -1,5 +1,6 @@
 # Importing the Keras libraries and packages
 
+import keras
 import sys
 import os
 import os.path
@@ -36,17 +37,14 @@ y = []
 # ou X = dado.iloc[:,:1].values
 #    y = dado.iloc[:,:2].values
 
-quantity= sum(os.path.isfile(os.path.join(config.imagePath, f)) for f in os.listdir(config.imagePath))
+quantity = sum(os.path.isfile(os.path.join(config.imagePath, f)) for f in os.listdir(config.imagePath))
 
 for item in range(quantity):
 
     X.append(dado[item][0])
     y.append(dado[item][1])
 
-
-X_train, X_test, y_train, y_test = train_test_split( X, y, test_size=0.33, random_state=42)
-
-
+#X_train, X_test, y_train, y_test = train_test_split( X, y, test_size=0.33, random_state=42)
 
 
 model = Sequential()
@@ -72,6 +70,7 @@ model.add(Convolution2D(filters = 64,
 
 model.add(Flatten()) #Converte para uma dimensão
 
+# Dense = Full connection
 model.add(Dense(activation = 'relu',
                units = 16384)) #FC1
 model.add(Dense(activation = 'relu',
@@ -90,7 +89,7 @@ test_datagen = ImageDataGenerator(rescale=1./255)
 
 
 train_generator = train_datagen.flow_from_directory(directory=r"/home/medeiros/mini_challenge/data_folder",
-                                             target_size = (256, 256),
+                                             target_size = (128, 128),
                                              color_mode = 'rgb',
                                              classes = ['graduation', 'meeting', 'picnic'],
                                              batch_size = 32,
@@ -102,17 +101,20 @@ train_generator = train_datagen.flow_from_directory(directory=r"/home/medeiros/m
 
 
 test_set = test_datagen.flow_from_directory(directory=r"/home/medeiros/mini_challenge/data_folder",
-                                           target_size = (256, 256),
+                                           target_size = (128, 128),
                                            color_mode = 'rgb',
                                            classes = ['graduation', 'meeting', 'picnic'],
                                            batch_size = 32,
                                            class_mode = 'categorical')
 
 
-validation_generator = test_datagen.flow_from_directory(
-        validate_images_path,
-        target_size=(256, 256),
-        batch_size=batch_size)
+validation_generator = test_datagen.flow_from_directory(directory=r"/home/medeiros/mini_challenge/data_folder",
+                                           target_size = (128, 128),
+                                           color_mode = 'rgb',
+                                           classes = ['graduation', 'meeting', 'picnic'],
+                                           batch_size = 32,
+                                           class_mode = 'categorical')
+
 early_stopping = keras.callbacks.EarlyStopping(monitor='val_acc', min_delta=0, patience=3, verbose=1, mode='auto')
 history = model.fit_generator(
         train_generator,
