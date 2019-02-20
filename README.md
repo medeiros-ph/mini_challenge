@@ -21,55 +21,66 @@ Tempo de Execução:
 
 ==> Python 3.6
 
+```sh
 sudo add-apt-repository ppa:jonathonf/python-3.6
 sudo apt-get update
 sudo apt-get install -y python3.6
+```
 
 ==> Virtualenv
-
+```sh
 sudo apt-get install -y wget
 sudo wget https://bootstrap.pypa.io/get-pip.py
 sudo python3 get-pip.py
 sudo pip3 install virtualenv virtualenvwrapper
 sudo rm -rf ~/.cache/pip get-pip.py
+```
 
 """ Inside .bashrc """"" (Este arquivo está localizado cd ~)
+```sh
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 source /usr/local/bin/virtualenvwrapper.sh
 
 source ~/.bashrc
-
+```
 
 ****************************** Criar ambiente ************************
 
 Default:
+
+```sh
 mkvirtualenv [name] -p [python3.5/python3.6]
 workon [env_name]
 deactivate
+```
 
 ******************** Configurando ambiente sem GPU *******************
 
+```sh
 (env) pip install -U pip
 (env) pip install numpy scipy pandas matplotlib opencv-python jupyter pillow 
 (env) pip install keras
 (env) pip install -U tensorflow
 (env) pip install sklearn
-
+(env) pip install --upgrade scikit-learn==0.18.0
+```
 
 ==> Instalacao do Pycharm
 
+```sh
 sudo add-apt-repository ppa:lyzardking/ubuntu-make
 sudo apt-get update
 sudo apt-get install -y ubuntu-make
 umake ide pycharm
 bash /home/"user"/.local/share/umake/ide/pycharm/bin/pycharm.sh &
-
+```
 
 
 # More info & Data
 
-https://bitbucket.org/kognitalab/images_mini_challange
+Enunciado geral:
+[link] https://bitbucket.org/kognitalab/images_mini_challange
 
 
 
