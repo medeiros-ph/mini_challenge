@@ -22,6 +22,10 @@ import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 from config import Config
 from sklearn.model_selection import train_test_split
 
+import matplotlib
+import matplotlib.pyplot as plt
+import h5py
+
 from PIL import Image
 
 config = Config()
@@ -57,15 +61,15 @@ model.add(MaxPooling2D(pool_size = (2, 2),
 
 model.add(Convolution2D(filters = 32,
                        kernel_size = (5, 5),
-                       input_shape = (32, 32, 3),
                        activation = 'relu'))
+#input_shape = (32, 32, 3),
 model.add(MaxPooling2D(pool_size = (2,2),
                       strides = 2))
 
 model.add(Convolution2D(filters = 64,
                        kernel_size = (5, 5),
-                       input_shape = (16, 16, 3),
                        activation = 'relu'))
+#input_shape = (16, 16, 3),
 
 model.add(Flatten()) #Converte para uma dimensão
 
@@ -77,18 +81,26 @@ model.add(Dense(activation = 'relu',
 model.add(Dense(activation = 'softmax',
                units = 3))#FC3
 
+#compila a arquitetura
+model.compile(optimizer='sgd',
+              loss='categorical_crossentropy',
+              metrics=['accuracy'],
+              loss_weights=None,
+              sample_weight_mode=None,
+              weighted_metrics=None,
+              target_tensors=None)
 
-train_datagen = ImageDataGenerator(
-rescale=1./255,
-shear_range=0.2,
-zoom_range=0.2,
-horizontal_flip=True)
+#Data Augumentation
+train_datagen = ImageDataGenerator(rescale=1./255,
+                                   shear_range=0.2,
+                                   zoom_range=0.2,
+                                   horizontal_flip=True)
 
 test_datagen = ImageDataGenerator(rescale=1./255)
 
 
-train_generator = train_datagen.flow_from_directory(directory=r"/home/medeiros/Desktop/data_folder/treino",
-                                             target_size = (128, 128),
+train_generator = train_datagen.flow_from_directory(directory=r"/home/medeiros/mini_challenge/data_folder/treino",
+                                             target_size = (64, 64),
                                              color_mode = 'rgb',
                                              classes = ['graduation', 'meeting', 'picnic'],
                                              batch_size = 32,
@@ -98,36 +110,105 @@ train_generator = train_datagen.flow_from_directory(directory=r"/home/medeiros/D
  ) #Recebe um diretório e caminha por ele
    #com base nos parâmetros fornecidos
 
+#print(train_generator)
 
-test_set = test_datagen.flow_from_directory(directory=r"/home/medeiros/Desktop/data_folder/teste",
-                                           target_size = (128, 128),
+test_set = test_datagen.flow_from_directory(directory=r"/home/medeiros/mini_challenge/data_folder/teste",
+                                           target_size = (64, 64),
                                            color_mode = 'rgb',
                                            classes = ['graduation', 'meeting', 'picnic'],
                                            batch_size = 32,
                                            class_mode = 'categorical')
 
 
-validation_generator = test_datagen.flow_from_directory(directory=r"/home/medeiros/Desktop/data_folder/validation",
-                                           target_size = (128, 128),
+validation_generator = test_datagen.flow_from_directory(directory=r"/home/medeiros/mini_challenge/data_folder/validation",
+                                           target_size = (64, 64),
                                            color_mode = 'rgb',
                                            classes = ['graduation', 'meeting', 'picnic'],
                                            batch_size = 32,
                                            class_mode = 'categorical')
+print(validation_generator)
 
-classifier.fit_generator(train_generator,
-                         steps_per_epoch= 12591,
-                         epochs = 50,
-                         validation_data = test_set,
-                         validation_steps = 6295)
+#classifier.\
+#fit_generator(train_generator,
+#              steps_per_epoch= None,
+#              epochs = 50,
+#              validation_data = test_set,
+#              validation_steps = None)
 
 early_stopping = keras.callbacks.EarlyStopping(monitor='val_acc', min_delta=0, patience=3, verbose=1, mode='auto')
+
 history = model.fit_generator(
         train_generator,
-        steps_per_epoch = 12591,
         epochs = 50,
+        steps_per_epoch = 12592,
         verbose = 1,
         callbacks = [early_stopping],
         validation_data = validation_generator,
-        validation_steps = 6295)
+        validation_steps = 4179)
 
+#epochs = 50,
+#steps_per_epoch = 12592,
+#verbose = 1,
+#callbacks = [early_stopping],
+#validation_data = validation_generator,
+#validation_steps = 4179)
+
+
+
+RefTitleResults = 'L2D3D3G0B1E200_3003001'
+
+###### Plot training & validation accuracy values
+plt.figure()
+plt.plot(history.history['acc'])
+plt.plot(history.history['val_acc'])
+plt.title('Model accuracy ')
+plt.ylabel('Accuracy')
+plt.xlabel('Epoch')
+plt.legend(['Train', 'Valid'], loc='upper left')
+plt.show()
+plt.savefig("AccxEpoch" + RefTitleResults + ".png")
+
+###### Plot training & validation loss values
+plt.figure()
+plt.plot(history.history['loss'])
+plt.plot(history.history['val_loss'])
+plt.title('Model loss ')
+plt.ylabel('Loss')
+plt.xlabel('Epoch')
+plt.legend(['Train', 'Valid'], loc='upper left')
+plt.show()
+plt.savefig("LossxEpoch" + RefTitleResults + ".png")
+
+from sklearn.metrics import roc_curve
+from sklearn.metrics import roc_auc_score
+
+# print(model.evaluate(x_test, y_test))
+#print(x_test.shape)
+probs = model.predict(validation_generator)
+######## keep probabilities for the positive outcome only
+probsp = probs  # [:, 1]
+# print(probsp.shape)
+# print(y_val)
+# print(probs)
+######## calculate AUC
+auc = roc_auc_score(validation_generator, probsp)
+print('AUC: %.3f' % auc)
+
+######## calculate roc curve
+fpr, tpr, thresholds = roc_curve(validation_generator, probsp)
+
+plt.figure()
+plt.plot([0, 1], [0, 1], 'k--')  # k = color black
+plt.plot(fpr, tpr, label="AUC: %.3f" % auc, color='C1', linewidth=3)  # for color 'C'+str(j), for j[0 9]
+plt.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc='lower left', ncol=2, mode="expand", borderaxespad=0.)
+plt.title('ROC')
+plt.xlabel('false positive rate', fontsize=14)
+plt.ylabel('true positive rate', fontsize=14)
+
+plt.show()
+plt.savefig("ROCLensDetectNet" + RefTitleResults + ".png")
+
+# save model
+
+model.save('Model' + RefTitleResults + '.h5')
 

@@ -59,12 +59,11 @@ for name in FF: # for each category
 	imgs = os.listdir(name)
 	shuffle(imgs)
 	l_size = len(imgs)
-	first_mark = int(l_size * 0.3)
-	second_mark = int(l_size * (0.3 + 0.6))
-	third_mark = int(l_size * (0.1))
-	test_files = imgs[:first_mark]
-	train_files = imgs[first_mark:second_mark]
-	validation_files = imgs[:third_mark]
+	first_mark = int(l_size * 0.6)
+	second_mark = int(l_size * (0.6 + 0.2))
+	train_files = imgs[:first_mark]
+	test_files = imgs[first_mark:second_mark]
+	validation_files = imgs[second_mark:]
 	print("l_size (60%): {}".format(l_size))
 	
 		
