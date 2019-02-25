@@ -28,21 +28,20 @@ config = Config()
 
 dado = pd.read_csv(config.arquivo_csv).values
 
-imagem = dado[0][0]
-categoria = dado[0][1]
+#imagem = dado[0][0]
+#categoria = dado[0][1]
 
-X = []
-y = []
+#X = []
+#y = []
 
 # ou X = dado.iloc[:,:1].values
 #    y = dado.iloc[:,:2].values
 
-quantity = sum(os.path.isfile(os.path.join(config.imagePath, f)) for f in os.listdir(config.imagePath))
+#quantity = sum(os.path.isfile(os.path.join(config.imagePath, f)) for f in os.listdir(config.imagePath))
 
-for item in range(quantity):
-
-    X.append(dado[item][0])
-    y.append(dado[item][1])
+#for item in range(quantity):
+#    X.append(dado[item][0])
+#    y.append(dado[item][1])
 
 #X_train, X_test, y_train, y_test = train_test_split( X, y, test_size=0.33, random_state=42)
 
@@ -88,7 +87,7 @@ horizontal_flip=True)
 test_datagen = ImageDataGenerator(rescale=1./255)
 
 
-train_generator = train_datagen.flow_from_directory(directory=r"/home/medeiros/mini_challenge/data_folder",
+train_generator = train_datagen.flow_from_directory(directory=r"/home/medeiros/Desktop/data_folder/treino",
                                              target_size = (128, 128),
                                              color_mode = 'rgb',
                                              classes = ['graduation', 'meeting', 'picnic'],
@@ -100,7 +99,7 @@ train_generator = train_datagen.flow_from_directory(directory=r"/home/medeiros/m
    #com base nos parâmetros fornecidos
 
 
-test_set = test_datagen.flow_from_directory(directory=r"/home/medeiros/mini_challenge/data_folder",
+test_set = test_datagen.flow_from_directory(directory=r"/home/medeiros/Desktop/data_folder/teste",
                                            target_size = (128, 128),
                                            color_mode = 'rgb',
                                            classes = ['graduation', 'meeting', 'picnic'],
@@ -108,27 +107,27 @@ test_set = test_datagen.flow_from_directory(directory=r"/home/medeiros/mini_chal
                                            class_mode = 'categorical')
 
 
-validation_generator = test_datagen.flow_from_directory(directory=r"/home/medeiros/mini_challenge/data_folder",
+validation_generator = test_datagen.flow_from_directory(directory=r"/home/medeiros/Desktop/data_folder/validation",
                                            target_size = (128, 128),
                                            color_mode = 'rgb',
                                            classes = ['graduation', 'meeting', 'picnic'],
                                            batch_size = 32,
                                            class_mode = 'categorical')
+
+classifier.fit_generator(train_generator,
+                         steps_per_epoch= 12591,
+                         epochs = 50,
+                         validation_data = test_set,
+                         validation_steps = 6295)
 
 early_stopping = keras.callbacks.EarlyStopping(monitor='val_acc', min_delta=0, patience=3, verbose=1, mode='auto')
 history = model.fit_generator(
         train_generator,
-        steps_per_epoch=21000,
-        epochs=50,
-        verbose=1,
-        callbacks=[early_stopping],
-        validation_data=validation_generator,
-        validation_steps=7000
-)
+        steps_per_epoch = 12591,
+        epochs = 50,
+        verbose = 1,
+        callbacks = [early_stopping],
+        validation_data = validation_generator,
+        validation_steps = 6295)
 
 
-classifier.fit_generator(train_generator,
-                         steps_per_epoch= 21000,
-                         epochs = 50,
-                         validation_data = test_set,
-                         validation_steps = 7000)
