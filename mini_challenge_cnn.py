@@ -139,7 +139,7 @@ early_stopping = keras.callbacks.EarlyStopping(monitor='val_acc', min_delta=0, p
 
 history = model.fit_generator(
         train_generator,
-        epochs = 50,
+        epochs = 5,
         steps_per_epoch = 12592,
         verbose = 1,
         callbacks = [early_stopping],
