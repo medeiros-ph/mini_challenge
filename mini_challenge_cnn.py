@@ -173,10 +173,10 @@ callbacks = get_callbacks(name_weights = name_weights, patience_lr=10, name_csv 
 history = model.fit_generator(
         train_generator,
         epochs = 4,
-        steps_per_epoch = 12592,
+        steps_per_epoch = 500,
         verbose = 1,
         validation_data = validation_generator,
-        validation_steps = 4179,
+        validation_steps = 50,
         callbacks = callbacks)
 
 #epochs = 50,
