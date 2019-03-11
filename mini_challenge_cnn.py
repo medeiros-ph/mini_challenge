@@ -4,6 +4,8 @@ import keras
 import sys
 import os
 import os.path
+import time
+import timeit
 from keras import backend as K
 
 from keras.models import Sequential
@@ -15,14 +17,21 @@ from keras.layers import Flatten
 from keras.layers import Dense
 from keras.layers.core import Dropout
 from keras.preprocessing.image import ImageDataGenerator
+from keras.callbacks import EarlyStopping, ModelCheckpoint, ReduceLROnPlateau, CSVLogger
+
+from keras.utils import to_categorical
+from keras.utils import to_categorical
+from keras.utils import to_categorical
 
 from subprocess import check_output
 import numpy as np
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 from config import Config
 from sklearn.model_selection import train_test_split
+import tensorflow as tf
 
 import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import h5py
 
@@ -91,6 +100,7 @@ model.compile(optimizer='sgd',
               target_tensors=None)
 
 #Data Augumentation
+#old train_datagen = gen
 train_datagen = ImageDataGenerator(rescale=1./255,
                                    shear_range=0.2,
                                    zoom_range=0.2,
@@ -126,25 +136,48 @@ validation_generator = test_datagen.flow_from_directory(directory=r"/home/medeir
                                            classes = ['graduation', 'meeting', 'picnic'],
                                            batch_size = 32,
                                            class_mode = 'categorical')
-print(validation_generator)
 
-#classifier.\
-#fit_generator(train_generator,
-#              steps_per_epoch= None,
-#              epochs = 50,
-#              validation_data = test_set,
-#              validation_steps = None)
+def get_callbacks(name_weights, patience_lr, name_csv):
+    mcp_save = ModelCheckpoint(name_weights)
+    csv_logger = CSVLogger(name_csv)
+    reduce_lr_loss = ReduceLROnPlateau(monitor='loss', factor=0.1, patience=patience_lr, verbose=1, epsilon=1e-4, mode='max')
+    return [mcp_save, csv_logger, reduce_lr_loss]
 
-early_stopping = keras.callbacks.EarlyStopping(monitor='val_acc', min_delta=0, patience=3, verbose=1, mode='auto')
+# y_train = to_categorical(y_train)
+# y_val = to_categorical(y_val)
+# y_test = to_categorical(y_test)
+
+batch_size=32
+start = time.perf_counter()
+
+# See https://www.tensorflow.org/tutorials/using_gpu#allowing_gpu_memory_growth
+# The first is the allow_growth option, which attempts to allocate only as much
+# GPU memory based on runtime allocations: it starts out allocating very little 
+# memory, and as Sessions get run and more GPU memory is needed, we extend the GPU memory region needed by 
+# the TensorFlow process. Note that we do not release memory, since that can lead 
+# to even worse memory fragmentation. To turn this option on, set the option in the ConfigProto by:
+
+config = tf.ConfigProto()
+config.gpu_options.allow_growth = False
+
+sess = tf.Session(config=config)
+
+
+name_weights = "Train_model_weights_{epoch:02d}.h5"
+csv_name = "trainning_k.csv"
+callbacks = get_callbacks(name_weights = name_weights, patience_lr=10, name_csv = csv_name)
+#generator = train_datagen.flow(x_train, y_train, batch_size = batch_size)
+
+#early_stopping = keras.callbacks.EarlyStopping(monitor='val_acc', min_delta=0, patience=3, verbose=1, mode='auto')
 
 history = model.fit_generator(
         train_generator,
-        epochs = 5,
+        epochs = 4,
         steps_per_epoch = 12592,
         verbose = 1,
-        callbacks = [early_stopping],
         validation_data = validation_generator,
-        validation_steps = 4179)
+        validation_steps = 4179,
+        callbacks = callbacks)
 
 #epochs = 50,
 #steps_per_epoch = 12592,
@@ -165,7 +198,7 @@ plt.title('Model accuracy ')
 plt.ylabel('Accuracy')
 plt.xlabel('Epoch')
 plt.legend(['Train', 'Valid'], loc='upper left')
-plt.show()
+#plt.show()
 plt.savefig("AccxEpoch" + RefTitleResults + ".png")
 
 ###### Plot training & validation loss values
@@ -176,8 +209,13 @@ plt.title('Model loss ')
 plt.ylabel('Loss')
 plt.xlabel('Epoch')
 plt.legend(['Train', 'Valid'], loc='upper left')
-plt.show()
+#plt.show()
 plt.savefig("LossxEpoch" + RefTitleResults + ".png")
+
+sess.close()
+
+elapsed = time.perf_counter() - start
+print('Elapsed %.3f seconds.' % elapsed)    
 
 from sklearn.metrics import roc_curve
 from sklearn.metrics import roc_auc_score
@@ -205,7 +243,7 @@ plt.title('ROC')
 plt.xlabel('false positive rate', fontsize=14)
 plt.ylabel('true positive rate', fontsize=14)
 
-plt.show()
+#plt.show()
 plt.savefig("ROCLensDetectNet" + RefTitleResults + ".png")
 
 # save model

@@ -1,0 +1,286 @@
+Using TensorFlow backend.
+WARNING:tensorflow:From /home/medeiros/.virtualenvs/challenge/lib/python3.6/site-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+2019-03-11 13:58:09.102358: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: FMA
+2019-03-11 13:58:09.129098: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 3593300000 Hz
+2019-03-11 13:58:09.129934: I tensorflow/compiler/xla/service/service.cc:150] XLA service 0x29022a0 executing computations on platform Host. Devices:
+2019-03-11 13:58:09.130045: I tensorflow/compiler/xla/service/service.cc:158]   StreamExecutor device (0): <undefined>, <undefined>
+Found 12592 images belonging to 3 classes.
+Found 4197 images belonging to 3 classes.
+Found 4197 images belonging to 3 classes.
+Traceback (most recent call last):
+  File "mini_challenge_cnn.py", line 152, in <module>
+    callbacks = get_callbacks(name_weights = name_weights, patience_lr=10, name_csv = csv_name)
+NameError: name 'get_callbacks' is not defined
+Using TensorFlow backend.
+WARNING:tensorflow:From /home/medeiros/.virtualenvs/challenge/lib/python3.6/site-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+2019-03-11 14:00:50.091324: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: FMA
+2019-03-11 14:00:50.117076: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 3593300000 Hz
+2019-03-11 14:00:50.117896: I tensorflow/compiler/xla/service/service.cc:150] XLA service 0x180e5d0 executing computations on platform Host. Devices:
+2019-03-11 14:00:50.118008: I tensorflow/compiler/xla/service/service.cc:158]   StreamExecutor device (0): <undefined>, <undefined>
+Found 12592 images belonging to 3 classes.
+Found 4197 images belonging to 3 classes.
+Found 4197 images belonging to 3 classes.
+Traceback (most recent call last):
+  File "mini_challenge_cnn.py", line 159, in <module>
+    callbacks = get_callbacks(name_weights = name_weights, patience_lr=10, name_csv = csv_name)
+  File "mini_challenge_cnn.py", line 135, in get_callbacks
+    mcp_save = ModelCheckpoint(name_weights)
+NameError: name 'ModelCheckpoint' is not defined
+Using TensorFlow backend.
+WARNING:tensorflow:From /home/medeiros/.virtualenvs/challenge/lib/python3.6/site-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+2019-03-11 14:03:08.054749: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: FMA
+2019-03-11 14:03:08.085032: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 3593300000 Hz
+2019-03-11 14:03:08.085785: I tensorflow/compiler/xla/service/service.cc:150] XLA service 0x34c83f0 executing computations on platform Host. Devices:
+2019-03-11 14:03:08.085896: I tensorflow/compiler/xla/service/service.cc:158]   StreamExecutor device (0): <undefined>, <undefined>
+/home/medeiros/.virtualenvs/challenge/lib/python3.6/site-packages/keras/callbacks.py:1065: UserWarning: `epsilon` argument is deprecated and will be removed, use `min_delta` instead.
+  warnings.warn('`epsilon` argument is deprecated and '
+Found 12592 images belonging to 3 classes.
+Found 4197 images belonging to 3 classes.
+Found 4197 images belonging to 3 classes.
+Traceback (most recent call last):
+  File "mini_challenge_cnn.py", line 161, in <module>
+    generator = gen.flow(x_train, y_train, batch_size = batch_size)
+NameError: name 'gen' is not defined
+Using TensorFlow backend.
+WARNING:tensorflow:From /home/medeiros/.virtualenvs/challenge/lib/python3.6/site-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+2019-03-11 14:06:58.218057: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: FMA
+2019-03-11 14:06:58.244969: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 3593300000 Hz
+2019-03-11 14:06:58.245633: I tensorflow/compiler/xla/service/service.cc:150] XLA service 0x1af33f0 executing computations on platform Host. Devices:
+2019-03-11 14:06:58.245721: I tensorflow/compiler/xla/service/service.cc:158]   StreamExecutor device (0): <undefined>, <undefined>
+/home/medeiros/.virtualenvs/challenge/lib/python3.6/site-packages/keras/callbacks.py:1065: UserWarning: `epsilon` argument is deprecated and will be removed, use `min_delta` instead.
+  warnings.warn('`epsilon` argument is deprecated and '
+Found 12592 images belonging to 3 classes.
+Found 4197 images belonging to 3 classes.
+Found 4197 images belonging to 3 classes.
+Traceback (most recent call last):
+  File "mini_challenge_cnn.py", line 162, in <module>
+    generator = train_datagen.flow(x_train, y_train, batch_size = batch_size)
+NameError: name 'x_train' is not defined
+Using TensorFlow backend.
+WARNING:tensorflow:From /home/medeiros/.virtualenvs/challenge/lib/python3.6/site-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+Found 12592 images belonging to 3 classes.
+Found 4197 images belonging to 3 classes.
+Found 4197 images belonging to 3 classes.
+Traceback (most recent call last):
+  File "mini_challenge_cnn.py", line 142, in <module>
+    y_train = to_categorical(y_train)
+NameError: name 'to_categorical' is not defined
+Using TensorFlow backend.
+WARNING:tensorflow:From /home/medeiros/.virtualenvs/challenge/lib/python3.6/site-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+Found 12592 images belonging to 3 classes.
+Found 4197 images belonging to 3 classes.
+Found 4197 images belonging to 3 classes.
+Traceback (most recent call last):
+  File "mini_challenge_cnn.py", line 146, in <module>
+    y_train = to_categorical(y_train)
+NameError: name 'y_train' is not defined
+Using TensorFlow backend.
+WARNING:tensorflow:From /home/medeiros/.virtualenvs/challenge/lib/python3.6/site-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+2019-03-11 14:12:07.645008: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: FMA
+2019-03-11 14:12:07.680799: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 3593300000 Hz
+2019-03-11 14:12:07.681302: I tensorflow/compiler/xla/service/service.cc:150] XLA service 0x2b3dda0 executing computations on platform Host. Devices:
+2019-03-11 14:12:07.681367: I tensorflow/compiler/xla/service/service.cc:158]   StreamExecutor device (0): <undefined>, <undefined>
+/home/medeiros/.virtualenvs/challenge/lib/python3.6/site-packages/keras/callbacks.py:1065: UserWarning: `epsilon` argument is deprecated and will be removed, use `min_delta` instead.
+  warnings.warn('`epsilon` argument is deprecated and '
+WARNING:tensorflow:From /home/medeiros/.virtualenvs/challenge/lib/python3.6/site-packages/tensorflow/python/ops/math_ops.py:3066: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+2019-03-11 14:12:08.687455: W tensorflow/core/framework/allocator.cc:124] Allocation of 339738624 exceeds 10% of system memory.
+2019-03-11 14:12:08.974072: W tensorflow/core/framework/allocator.cc:124] Allocation of 339738624 exceeds 10% of system memory.
+2019-03-11 14:12:09.300835: W tensorflow/core/framework/allocator.cc:124] Allocation of 339738624 exceeds 10% of system memory.
+2019-03-11 14:12:09.571774: W tensorflow/core/framework/allocator.cc:124] Allocation of 339738624 exceeds 10% of system memory.
+2019-03-11 14:12:09.800710: W tensorflow/core/framework/allocator.cc:124] Allocation of 339738624 exceeds 10% of system memory.
+Found 12592 images belonging to 3 classes.
+Found 4197 images belonging to 3 classes.
+Found 4197 images belonging to 3 classes.
+Epoch 1/4
+
+    1/12592 [..............................] - ETA: 24:12:05 - loss: 1.1025 - acc: 0.3125
+    2/12592 [..............................] - ETA: 16:13:34 - loss: 1.1055 - acc: 0.2969
+    3/12592 [..............................] - ETA: 13:22:34 - loss: 1.1026 - acc: 0.3438
+    4/12592 [..............................] - ETA: 11:55:32 - loss: 1.1022 - acc: 0.3438
+    5/12592 [..............................] - ETA: 11:00:08 - loss: 1.1004 - acc: 0.3563
+    6/12592 [..............................] - ETA: 10:27:27 - loss: 1.0990 - acc: 0.3542
+    7/12592 [..............................] - ETA: 10:11:20 - loss: 1.0967 - acc: 0.3705
+    8/12592 [..............................] - ETA: 10:13:46 - loss: 1.1004 - acc: 0.3555
+    9/12592 [..............................] - ETA: 10:02:24 - loss: 1.0996 - acc: 0.3542
+   10/12592 [..............................] - ETA: 9:54:38 - loss: 1.0989 - acc: 0.3594 
+   11/12592 [..............................] - ETA: 9:41:00 - loss: 1.0988 - acc: 0.3523
+   12/12592 [..............................] - ETA: 9:38:14 - loss: 1.0988 - acc: 0.3490
+   13/12592 [..............................] - ETA: 9:31:21 - loss: 1.0985 - acc: 0.3510
+   14/12592 [..............................] - ETA: 9:24:26 - loss: 1.0978 - acc: 0.3527
+   15/12592 [..............................] - ETA: 9:18:25 - loss: 1.0998 - acc: 0.3375
+   16/12592 [..............................] - ETA: 9:12:56 - loss: 1.0992 - acc: 0.3457
+   17/12592 [..............................] - ETA: 9:08:19 - loss: 1.0995 - acc: 0.3438
+   18/12592 [..............................] - ETA: 9:04:08 - loss: 1.0989 - acc: 0.3490
+   19/12592 [..............................] - ETA: 9:06:46 - loss: 1.0988 - acc: 0.3503
+   20/12592 [..............................] - ETA: 9:03:08 - loss: 1.0982 - acc: 0.3484
+   21/12592 [..............................] - ETA: 8:59:50 - loss: 1.0984 - acc: 0.3497
+   22/12592 [..............................] - ETA: 8:56:19 - loss: 1.0987 - acc: 0.3523
+   23/12592 [..............................] - ETA: 8:53:25 - loss: 1.0984 - acc: 0.3560
+   24/12592 [..............................] - ETA: 8:50:44 - loss: 1.0980 - acc: 0.3516
+   25/12592 [..............................] - ETA: 8:48:03 - loss: 1.0981 - acc: 0.3538
+   26/12592 [..............................] - ETA: 8:48:05 - loss: 1.0976 - acc: 0.3546
+   27/12592 [..............................] - ETA: 8:51:14 - loss: 1.0984 - acc: 0.3507
+   28/12592 [..............................] - ETA: 8:49:55 - loss: 1.0977 - acc: 0.3583
+   29/12592 [..............................] - ETA: 8:49:05 - loss: 1.0979 - acc: 0.3556
+   30/12592 [..............................] - ETA: 8:48:30 - loss: 1.0977 - acc: 0.3531
+   31/12592 [..............................] - ETA: 8:46:47 - loss: 1.0975 - acc: 0.3548
+   32/12592 [..............................] - ETA: 8:45:47 - loss: 1.0974 - acc: 0.3564
+   33/12592 [..............................] - ETA: 8:44:22 - loss: 1.0973 - acc: 0.3542
+   34/12592 [..............................] - ETA: 8:43:38 - loss: 1.0970 - acc: 0.3548
+   35/12592 [..............................] - ETA: 8:42:06 - loss: 1.0971 - acc: 0.3527
+   36/12592 [..............................] - ETA: 8:41:18 - loss: 1.0973 - acc: 0.3490
+   37/12592 [..............................] - ETA: 8:41:56 - loss: 1.0970 - acc: 0.3530
+   38/12592 [..............................] - ETA: 8:41:16 - loss: 1.0969 - acc: 0.3536
+   39/12592 [..............................] - ETA: 8:43:17 - loss: 1.0970 - acc: 0.3518
+   40/12592 [..............................] - ETA: 8:43:33 - loss: 1.0969 - acc: 0.3516
+   41/12592 [..............................] - ETA: 8:43:08 - loss: 1.0968 - acc: 0.3521
+   42/12592 [..............................] - ETA: 8:45:53 - loss: 1.0966 - acc: 0.3534
+   43/12592 [..............................] - ETA: 8:44:21 - loss: 1.0963 - acc: 0.3590
+   44/12592 [..............................] - ETA: 8:42:58 - loss: 1.0966 - acc: 0.3572
+   45/12592 [..............................] - ETA: 8:42:31 - loss: 1.0966 - acc: 0.3569
+   46/12592 [..............................] - ETA: 8:41:59 - loss: 1.0966 - acc: 0.3587
+   47/12592 [..............................] - ETA: 8:40:47 - loss: 1.0965 - acc: 0.3590
+   48/12592 [..............................] - ETA: 8:39:38 - loss: 1.0965 - acc: 0.3574
+   49/12592 [..............................] - ETA: 8:38:38 - loss: 1.0964 - acc: 0.3597
+   50/12592 [..............................] - ETA: 8:38:53 - loss: 1.0965 - acc: 0.3575
+   51/12592 [..............................] - ETA: 8:41:28 - loss: 1.0966 - acc: 0.3585
+   52/12592 [..............................] - ETA: 8:40:47 - loss: 1.0965 - acc: 0.3612
+   53/12592 [..............................] - ETA: 8:40:48 - loss: 1.0964 - acc: 0.3608
+   54/12592 [..............................] - ETA: 8:39:43 - loss: 1.0964 - acc: 0.3600
+   55/12592 [..............................] - ETA: 8:39:08 - loss: 1.0965 - acc: 0.3591
+   56/12592 [..............................] - ETA: 8:38:12 - loss: 1.0962 - acc: 0.3627
+   57/12592 [..............................] - ETA: 8:37:14 - loss: 1.0964 - acc: 0.3624
+   58/12592 [..............................] - ETA: 8:36:17 - loss: 1.0961 - acc: 0.3637
+   59/12592 [..............................] - ETA: 8:35:38 - loss: 1.0961 - acc: 0.3633
+   60/12592 [..............................] - ETA: 8:34:54 - loss: 1.0959 - acc: 0.3641
+   61/12592 [..............................] - ETA: 8:34:32 - loss: 1.0960 - acc: 0.3637
+   62/12592 [..............................] - ETA: 8:34:07 - loss: 1.0957 - acc: 0.3634
+   63/12592 [..............................] - ETA: 8:33:31 - loss: 1.0959 - acc: 0.3616
+   64/12592 [..............................] - ETA: 8:33:42 - loss: 1.0959 - acc: 0.3633
+   65/12592 [..............................] - ETA: 8:33:18 - loss: 1.0958 - acc: 0.3635
+   66/12592 [..............................] - ETA: 8:32:41 - loss: 1.0956 - acc: 0.3665
+   67/12592 [..............................] - ETA: 8:32:03 - loss: 1.0954 - acc: 0.3689
+   68/12592 [..............................] - ETA: 8:31:54 - loss: 1.0953 - acc: 0.3695
+   69/12592 [..............................] - ETA: 8:32:15 - loss: 1.0953 - acc: 0.3700
+   70/12592 [..............................] - ETA: 8:31:30 - loss: 1.0953 - acc: 0.3696
+   71/12592 [..............................] - ETA: 8:30:47 - loss: 1.0952 - acc: 0.3697
+   72/12592 [..............................] - ETA: 8:30:24 - loss: 1.0950 - acc: 0.3715
+   73/12592 [..............................] - ETA: 8:31:00 - loss: 1.0949 - acc: 0.3729
+   74/12592 [..............................] - ETA: 8:31:56 - loss: 1.0946 - acc: 0.3733
+   75/12592 [..............................] - ETA: 8:31:35 - loss: 1.0946 - acc: 0.3733
+   76/12592 [..............................] - ETA: 8:31:09 - loss: 1.0947 - acc: 0.3729
+   77/12592 [..............................] - ETA: 8:31:03 - loss: 1.0945 - acc: 0.3738
+   78/12592 [..............................] - ETA: 8:31:58 - loss: 1.0944 - acc: 0.3746
+   79/12592 [..............................] - ETA: 8:34:52 - loss: 1.0940 - acc: 0.3762
+   80/12592 [..............................] - ETA: 8:34:54 - loss: 1.0939 - acc: 0.3758
+   81/12592 [..............................] - ETA: 8:34:34 - loss: 1.0935 - acc: 0.3765
+   82/12592 [..............................] - ETA: 8:34:01 - loss: 1.0939 - acc: 0.3750
+   83/12592 [..............................] - ETA: 8:33:33 - loss: 1.0941 - acc: 0.3746
+   84/12592 [..............................] - ETA: 8:33:10 - loss: 1.0940 - acc: 0.3750
+   85/12592 [..............................] - ETA: 8:32:40 - loss: 1.0938 - acc: 0.3772
+   86/12592 [..............................] - ETA: 8:32:28 - loss: 1.0935 - acc: 0.3775
+   87/12592 [..............................] - ETA: 8:32:10 - loss: 1.0933 - acc: 0.3793
+   88/12592 [..............................] - ETA: 8:31:58 - loss: 1.0932 - acc: 0.3782
+   89/12592 [..............................] - ETA: 8:31:27 - loss: 1.0933 - acc: 0.3778
+   90/12592 [..............................] - ETA: 8:31:03 - loss: 1.0934 - acc: 0.3764
+   91/12592 [..............................] - ETA: 8:30:30 - loss: 1.0934 - acc: 0.3757
+   92/12592 [..............................] - ETA: 8:30:03 - loss: 1.0931 - acc: 0.3770
+   93/12592 [..............................] - ETA: 8:29:36 - loss: 1.0931 - acc: 0.3760
+   94/12592 [..............................] - ETA: 8:29:48 - loss: 1.0930 - acc: 0.3747
+   95/12592 [..............................] - ETA: 8:29:29 - loss: 1.0931 - acc: 0.3737
+   96/12592 [..............................] - ETA: 8:29:44 - loss: 1.0932 - acc: 0.3740
+   97/12592 [..............................] - ETA: 8:30:10 - loss: 1.0931 - acc: 0.3747
+   98/12592 [..............................] - ETA: 8:29:57 - loss: 1.0931 - acc: 0.3744
+   99/12592 [..............................] - ETA: 8:29:20 - loss: 1.0933 - acc: 0.3734
+  100/12592 [..............................] - ETA: 8:28:46 - loss: 1.0933 - acc: 0.3728
+  101/12592 [..............................] - ETA: 8:28:12 - loss: 1.0932 - acc: 0.3728
+  102/12592 [..............................] - ETA: 8:27:40 - loss: 1.0931 - acc: 0.3741
+  103/12592 [..............................] - ETA: 8:27:13 - loss: 1.0928 - acc: 0.3759
+  104/12592 [..............................] - ETA: 8:27:09 - loss: 1.0926 - acc: 0.3756
+  105/12592 [..............................] - ETA: 8:27:01 - loss: 1.0924 - acc: 0.3759
+  106/12592 [..............................] - ETA: 8:26:45 - loss: 1.0923 - acc: 0.3750
+  107/12592 [..............................] - ETA: 8:26:16 - loss: 1.0921 - acc: 0.3759
+  108/12592 [..............................] - ETA: 8:25:54 - loss: 1.0918 - acc: 0.3762
+  109/12592 [..............................] - ETA: 8:25:28 - loss: 1.0920 - acc: 0.3756
+  110/12592 [..............................] - ETA: 8:25:40 - loss: 1.0917 - acc: 0.3756
+  111/12592 [..............................] - ETA: 8:25:37 - loss: 1.0920 - acc: 0.3753
+  112/12592 [..............................] - ETA: 8:25:34 - loss: 1.0915 - acc: 0.3772
+  113/12592 [..............................] - ETA: 8:25:11 - loss: 1.0910 - acc: 0.3778
+  114/12592 [..............................] - ETA: 8:24:55 - loss: 1.0914 - acc: 0.3775
+  115/12592 [..............................] - ETA: 8:24:40 - loss: 1.0910 - acc: 0.3780
+  116/12592 [..............................] - ETA: 8:24:23 - loss: 1.0916 - acc: 0.3769
+  117/12592 [..............................] - ETA: 8:24:27 - loss: 1.0917 - acc: 0.3766
+  118/12592 [..............................] - ETA: 8:24:44 - loss: 1.0916 - acc: 0.3771
+  119/12592 [..............................] - ETA: 8:24:21 - loss: 1.0919 - acc: 0.3771
+  120/12592 [..............................] - ETA: 8:24:54 - loss: 1.0920 - acc: 0.3776
+  121/12592 [..............................] - ETA: 8:24:28 - loss: 1.0920 - acc: 0.3768
+  122/12592 [..............................] - ETA: 8:24:15 - loss: 1.0918 - acc: 0.3781
+  123/12592 [..............................] - ETA: 8:25:49 - loss: 1.0916 - acc: 0.3791
+  124/12592 [..............................] - ETA: 8:26:18 - loss: 1.0918 - acc: 0.3788
+  125/12592 [..............................] - ETA: 8:26:38 - loss: 1.0920 - acc: 0.3780
+  126/12592 [..............................] - ETA: 8:26:09 - loss: 1.0919 - acc: 0.3782
+  127/12592 [..............................] - ETA: 8:25:49 - loss: 1.0916 - acc: 0.3797
+  128/12592 [..............................] - ETA: 8:25:22 - loss: 1.0916 - acc: 0.3794
+  129/12592 [..............................] - ETA: 8:24:50 - loss: 1.0914 - acc: 0.3803
+  130/12592 [..............................] - ETA: 8:24:44 - loss: 1.0914 - acc: 0.3796
+  131/12592 [..............................] - ETA: 8:24:29 - loss: 1.0913 - acc: 0.3793
+  132/12592 [..............................] - ETA: 8:24:31 - loss: 1.0916 - acc: 0.3790
+  133/12592 [..............................] - ETA: 8:25:07 - loss: 1.0916 - acc: 0.3795
+  134/12592 [..............................] - ETA: 8:25:23 - loss: 1.0916 - acc: 0.3794
+  135/12592 [..............................] - ETA: 8:26:14 - loss: 1.0913 - acc: 0.3808
+  136/12592 [..............................] - ETA: 8:26:59 - loss: 1.0920 - acc: 0.3791
+  137/12592 [..............................] - ETA: 8:27:59 - loss: 1.0918 - acc: 0.3802
+  138/12592 [..............................] - ETA: 8:27:55 - loss: 1.0915 - acc: 0.3809
+  139/12592 [..............................] - ETA: 8:27:27 - loss: 1.0920 - acc: 0.3793
+  140/12592 [..............................] - ETA: 8:26:53 - loss: 1.0920 - acc: 0.3786
+  141/12592 [..............................] - ETA: 8:26:22 - loss: 1.0916 - acc: 0.3792
+  142/12592 [..............................] - ETA: 8:26:52 - loss: 1.0919 - acc: 0.3787
+  143/12592 [..............................] - ETA: 8:26:32 - loss: 1.0917 - acc: 0.3798
+  144/12592 [..............................] - ETA: 8:26:04 - loss: 1.0915 - acc: 0.3802
+  145/12592 [..............................] - ETA: 8:25:33 - loss: 1.0915 - acc: 0.3806
+  146/12592 [..............................] - ETA: 8:25:10 - loss: 1.0912 - acc: 0.3810
+  147/12592 [..............................] - ETA: 8:24:36 - loss: 1.0912 - acc: 0.3810
+  148/12592 [..............................] - ETA: 8:24:06 - loss: 1.0912 - acc: 0.3807
+  149/12592 [..............................] - ETA: 8:23:35 - loss: 1.0911 - acc: 0.3819
+  150/12592 [..............................] - ETA: 8:23:27 - loss: 1.0911 - acc: 0.3829
+  151/12592 [..............................] - ETA: 8:24:23 - loss: 1.0909 - acc: 0.3839
+  152/12592 [..............................] - ETA: 8:24:32 - loss: 1.0906 - acc: 0.3845
+  153/12592 [..............................] - ETA: 8:25:10 - loss: 1.0913 - acc: 0.3830
+  154/12592 [..............................] - ETA: 8:25:54 - loss: 1.0911 - acc: 0.3827
+  155/12592 [..............................] - ETA: 8:26:14 - loss: 1.0911 - acc: 0.3831
+  156/12592 [..............................] - ETA: 8:26:11 - loss: 1.0913 - acc: 0.3824
+  157/12592 [..............................] - ETA: 8:26:01 - loss: 1.0912 - acc: 0.3826
+  158/12592 [..............................] - ETA: 8:26:08 - loss: 1.0910 - acc: 0.3827
+  159/12592 [..............................] - ETA: 8:26:27 - loss: 1.0907 - acc: 0.3840
+  160/12592 [..............................] - ETA: 8:26:33 - loss: 1.0904 - acc: 0.3848
+  161/12592 [..............................] - ETA: 8:27:42 - loss: 1.0900 - acc: 0.3851
+  162/12592 [..............................] - ETA: 8:28:41 - loss: 1.0900 - acc: 0.3852
+  163/12592 [..............................] - ETA: 8:29:42 - loss: 1.0897 - acc: 0.3859
+  164/12592 [..............................] - ETA: 8:31:00 - loss: 1.0897 - acc: 0.3855
+  165/12592 [..............................] - ETA: 8:31:44 - loss: 1.0895 - acc: 0.3862
+  166/12592 [..............................] - ETA: 8:32:25 - loss: 1.0895 - acc: 0.3861
+  167/12592 [..............................] - ETA: 8:32:41 - loss: 1.0893 - acc: 0.3864
+  168/12592 [..............................] - ETA: 8:33:33 - loss: 1.0893 - acc: 0.3865
+  169/12592 [..............................] - ETA: 8:34:51 - loss: 1.0894 - acc: 0.3857
+  170/12592 [..............................] - ETA: 8:36:30 - loss: 1.0895 - acc: 0.3853
+  171/12592 [..............................] - ETA: 8:37:39 - loss: 1.0894 - acc: 0.3860
+  172/12592 [..............................] - ETA: 8:38:49 - loss: 1.0894 - acc: 0.3866
+  173/12592 [..............................] - ETA: 8:39:13 - loss: 1.0893 - acc: 0.3869
+  174/12592 [..............................] - ETA: 8:39:17 - loss: 1.0891 - acc: 0.3874
+  175/12592 [..............................] - ETA: 8:39:04 - loss: 1.0888 - acc: 0.3882
