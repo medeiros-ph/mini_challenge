@@ -41,15 +41,6 @@ config = Config()
 
 dado = pd.read_csv(config.arquivo_csv).values
 
-#imagem = dado[0][0]
-#categoria = dado[0][1]
-
-#X = []
-#y = []
-
-# ou X = dado.iloc[:,:1].values
-#    y = dado.iloc[:,:2].values
-
 #quantity = sum(os.path.isfile(os.path.join(config.imagePath, f)) for f in os.listdir(config.imagePath))
 
 #for item in range(quantity):
@@ -91,7 +82,7 @@ model.add(Dense(activation = 'softmax',
                units = 3))#FC3
 
 #compila a arquitetura
-model.compile(optimizer='sgd',
+model.compile(optimizer='adam',
               loss='categorical_crossentropy',
               metrics=['accuracy'],
               loss_weights=None,
