@@ -166,17 +166,17 @@ sess = tf.Session(config=config)
 name_weights = "Train_model_weights_{epoch:02d}.h5"
 csv_name = "trainning_k.csv"
 callbacks = get_callbacks(name_weights = name_weights, patience_lr=10, name_csv = csv_name)
-#generator = train_datagen.flow(x_train, y_train, batch_size = batch_size)
-
+#train_generator = train_datagen.flow(x_train, y_train, batch_size = batch_size)
+#generator
 #early_stopping = keras.callbacks.EarlyStopping(monitor='val_acc', min_delta=0, patience=3, verbose=1, mode='auto')
 
 history = model.fit_generator(
         train_generator,
-        epochs = 4,
-        steps_per_epoch = 500,
+        epochs = 50,
+        steps_per_epoch = 12592,
         verbose = 1,
         validation_data = validation_generator,
-        validation_steps = 50,
+        validation_steps = 4179,
         callbacks = callbacks)
 
 #epochs = 50,
@@ -220,31 +220,31 @@ print('Elapsed %.3f seconds.' % elapsed)
 from sklearn.metrics import roc_curve
 from sklearn.metrics import roc_auc_score
 
-# print(model.evaluate(x_test, y_test))
-#print(x_test.shape)
-probs = model.predict(validation_generator)
-######## keep probabilities for the positive outcome only
-probsp = probs  # [:, 1]
-# print(probsp.shape)
-# print(y_val)
-# print(probs)
-######## calculate AUC
-auc = roc_auc_score(validation_generator, probsp)
-print('AUC: %.3f' % auc)
+# # print(model.evaluate(x_test, y_test))
+# #print(x_test.shape)
+# probs = model.predict(validation_generator)
+# ######## keep probabilities for the positive outcome only
+# probsp = probs  # [:, 1]
+# # print(probsp.shape)
+# # print(y_val)
+# # print(probs)
+# ######## calculate AUC
+# auc = roc_auc_score(validation_generator, probsp)
+# print('AUC: %.3f' % auc)
 
-######## calculate roc curve
-fpr, tpr, thresholds = roc_curve(validation_generator, probsp)
+# ######## calculate roc curve
+# fpr, tpr, thresholds = roc_curve(validation_generator, probsp)
 
-plt.figure()
-plt.plot([0, 1], [0, 1], 'k--')  # k = color black
-plt.plot(fpr, tpr, label="AUC: %.3f" % auc, color='C1', linewidth=3)  # for color 'C'+str(j), for j[0 9]
-plt.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc='lower left', ncol=2, mode="expand", borderaxespad=0.)
-plt.title('ROC')
-plt.xlabel('false positive rate', fontsize=14)
-plt.ylabel('true positive rate', fontsize=14)
+# plt.figure()
+# plt.plot([0, 1], [0, 1], 'k--')  # k = color black
+# plt.plot(fpr, tpr, label="AUC: %.3f" % auc, color='C1', linewidth=3)  # for color 'C'+str(j), for j[0 9]
+# plt.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc='lower left', ncol=2, mode="expand", borderaxespad=0.)
+# plt.title('ROC')
+# plt.xlabel('false positive rate', fontsize=14)
+# plt.ylabel('true positive rate', fontsize=14)
 
-#plt.show()
-plt.savefig("ROCLensDetectNet" + RefTitleResults + ".png")
+# #plt.show()
+# plt.savefig("ROCLensDetectNet" + RefTitleResults + ".png")
 
 # save model
 
