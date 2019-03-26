@@ -20,8 +20,6 @@ from keras.preprocessing.image import ImageDataGenerator
 from keras.callbacks import EarlyStopping, ModelCheckpoint, ReduceLROnPlateau, CSVLogger
 
 from keras.utils import to_categorical
-from keras.utils import to_categorical
-from keras.utils import to_categorical
 
 from subprocess import check_output
 import numpy as np
@@ -36,6 +34,26 @@ import matplotlib.pyplot as plt
 import h5py
 
 from PIL import Image
+
+#https://www.pyimagesearch.com/2017/10/30/how-to-multi-gpu-training-with-keras-python-and-deep-learning/
+#from pyimagesearch.minigooglenet import MiniGoogLeNet
+from sklearn.preprocessing import LabelBinarizer
+from keras.callbacks import LearningRateScheduler
+from keras.utils.training_utils import multi_gpu_model
+#from keras.optimizers import SGD
+#from keras.datasets import cifar10
+import argparse
+
+# construct the argument parse and parse the arguments
+ap = argparse.ArgumentParser()
+ap.add_argument("-o", "--output", required=True,
+	help="path to output plot")
+ap.add_argument("-g", "--gpus", type=int, default=1,
+	help="# of GPUs to use for training")
+args = vars(ap.parse_args())
+
+# grab the number of GPUs and store it in a conveience variable
+G = args["gpus"]
 
 config = Config()
 
@@ -90,6 +108,10 @@ model.compile(optimizer='adam',
               weighted_metrics=None,
               target_tensors=None)
 
+y_train = to_categorical(y_train)
+y_val = to_categorical(y_val)
+y_test = to_categorical(y_test)
+
 #Data Augumentation
 #old train_datagen = gen
 train_datagen = ImageDataGenerator(rescale=1./255,
@@ -134,9 +156,6 @@ def get_callbacks(name_weights, patience_lr, name_csv):
     reduce_lr_loss = ReduceLROnPlateau(monitor='loss', factor=0.1, patience=patience_lr, verbose=1, epsilon=1e-4, mode='max')
     return [mcp_save, csv_logger, reduce_lr_loss]
 
-# y_train = to_categorical(y_train)
-# y_val = to_categorical(y_val)
-# y_test = to_categorical(y_test)
 
 batch_size=32
 start = time.perf_counter()
